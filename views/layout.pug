@@ -1,0 +1,35 @@
+doctype
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='stylesheet' href='/main.css')
+  body
+    .container
+      .profile-wrap
+        .profile
+          if user && user.id
+            .user-name= 'Hello! ' + user.nick 
+            .user-money= 'Budget: ' + user.money 
+            input#my-id(type='hidden' value=user.id)
+            a#logout.btn(href='/auth/logout') Log out
+            a#register.btn(href='/good') Register product
+            a#list.btn(href='/list') Successful bid
+          else
+            form#login-form(action='/auth/login' method='post')
+              .input-group
+                label(for='email') Email
+                input#email(type='email' name='email' required autofocus)
+              .input-group
+                label(for='password') Password
+                input#password(type='password' name='password' required)
+              if loginError
+                .error-message= loginError
+              a#join.btn(href='/join') Sign up
+              button#login.btn(type='submit') Log in
+        footer
+          
+        block good
+      block content

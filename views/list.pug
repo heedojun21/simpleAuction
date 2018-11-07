@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .timeline
+    a(href="http://localhost:8010"): button(type="button") Back to main
+    h2 Auction successful bid list
+    table#good-list
+      tr
+        th name
+        th photo
+        th bid
+      for good in goods
+        tr
+          td= good.name
+          td: img(src='/img/' + good.img)
+          td= good.auctions[0].bid
